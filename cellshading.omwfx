@@ -25,17 +25,11 @@ fragment main {
     
     for (float fStep = 0.0; fStep < 1.0; fStep += fCellStep) {
         if (vScene.r >= (fStep + (fCellStep / 2))) { fNewR = fStep + fCellStep; }
-    }
-    clamp(fNewR, 0.0, 1.0);
-    
-    for (float fStep = 0.0; fStep < 1.0; fStep += fCellStep) {
         if (vScene.g >= (fStep + (fCellStep / 2))) { fNewG = fStep + fCellStep; }
-    }
-    clamp(fNewG, 0.0, 1.0);
-    
-    for (float fStep = 0.0; fStep < 1.0; fStep += fCellStep) {
         if (vScene.b >= (fStep + (fCellStep / 2))) { fNewB = fStep + fCellStep; }
     }
+    clamp(fNewR, 0.0, 1.0);
+    clamp(fNewG, 0.0, 1.0);
     clamp(fNewB, 0.0, 1.0);
     
     if (uShaderEnabled) { omw_FragColor = vec4(fNewR, fNewG, fNewB, vScene.a); }

@@ -8,4 +8,4 @@ Morrowind/Data Files/shaders/cellshading.omwfx
 3. Within the shader menu, modify to color precision variable as desired.
 
 # Screenshots
-<img src="readme/screenshot1.png" alt="Screenshot 1" width="400">
+<img src="screenshots/screenshot1.png" alt="Screenshot 1" width="400">
