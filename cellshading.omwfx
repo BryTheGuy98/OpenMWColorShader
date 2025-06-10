@@ -1,0 +1,51 @@
+uniform_bool uShaderEnabled {
+	default = true;
+	description ="Enable cell shading shader.";
+	display_name = "Enable Shader";
+}
+
+uniform_int iCellFactor {
+  default = 10;
+  min = 2;
+  max = 64;
+  step = 2;
+  description = "Level of precision given to colors. Higher number = more levels of colors.";
+  display_name = "Color Precision";
+}
+
+fragment main {
+  omw_In vec2 omw_TexCoord;
+
+  void main() {
+    const float fCellStep = 1.0 / iCellFactor;
+    vec4 vScene = omw_GetLastShader(omw_TexCoord);
+    float fNewR = 0.0;
+    float fNewG = 0.0;
+    float fNewB = 0.0;
+    
+    for (float fStep = 0.0; fStep < 1.0; fStep += fCellStep) {
+        if (vScene.r >= (fStep + (fCellStep / 2))) { fNewR = fStep + fCellStep; }
+    }
+    clamp(fNewR, 0.0, 1.0);
+    
+    for (float fStep = 0.0; fStep < 1.0; fStep += fCellStep) {
+        if (vScene.g >= (fStep + (fCellStep / 2))) { fNewG = fStep + fCellStep; }
+    }
+    clamp(fNewG, 0.0, 1.0);
+    
+    for (float fStep = 0.0; fStep < 1.0; fStep += fCellStep) {
+        if (vScene.b >= (fStep + (fCellStep / 2))) { fNewB = fStep + fCellStep; }
+    }
+    clamp(fNewB, 0.0, 1.0);
+    
+    if (uShaderEnabled) { omw_FragColor = vec4(fNewR, fNewG, fNewB, vScene.a); }
+    else { omw_FragColor = vScene; }
+  }
+}
+
+technique {
+	description = "Cell Shading shader";
+	passes = main;
+	version = "1.1";
+	author = "BryTheGuy";
+}
