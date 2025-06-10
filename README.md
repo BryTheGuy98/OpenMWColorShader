@@ -6,3 +6,6 @@ A simple color shader for OpenMW that modifies the precision of the game's color
 Morrowind/Data Files/shaders/cellshading.omwfx
 2. Launch OpenMW and press F2 while in-game to open the shader menu. From here, move the shader to the right-side column to enable it.
 3. Within the shader menu, modify to color precision variable as desired.
+
+# Screenshots
+<img src="readme/screenshot1.png" alt="Screenshot 1" width="400">
